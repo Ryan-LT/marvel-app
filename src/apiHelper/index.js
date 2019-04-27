@@ -33,10 +33,10 @@ export const getCharacterDetail = (id) => {
     })
 };
 
-export const getCharacterAdditionalData = (url) => {
+export const getCharacterAdditionalData = (id) => {
     const ts = new Date().getTime();
     const hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-    return axios.get(url, {
+    return axios.get(`${API_URL}/${id}/series`, {
         params: {
             ts: ts,
             apikey: PUBLIC_KEY,

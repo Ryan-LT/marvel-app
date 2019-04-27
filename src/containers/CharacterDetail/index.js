@@ -15,11 +15,12 @@ class CharacterDetail extends Component {
     }
 
     componentDidMount() {
-        getCharacterDetail(this.props.match.params.id).then(res => {
+        const characterId = this.props.match.params.id;
+        getCharacterDetail(characterId).then(res => {
             const data = res.data.data.results[0];
             this.setState({ general: data });
             if (data.series.items.length !== 0) {
-                getCharacterAdditionalData(data.series.collectionURI).then(res => {
+                getCharacterAdditionalData(characterId).then(res => {
                     const data = res.data.data.results;
                     this.setState({
                         series: data.slice(0, 5),
