@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import CharacterDashboard from './containers/CharacterDashboard'
 import CharacterDetail from './containers/CharacterDetail'
+import RemoveVowel from './components/RemoveVowel'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={CharacterDashboard} />
-          <Route path="/:id" component={CharacterDetail} />
+          <Route path="/detail/:id" component={CharacterDetail} />
+          <Route path="/removeVowel" exact component={RemoveVowel} />
         </Switch>
       </BrowserRouter>
     </div>

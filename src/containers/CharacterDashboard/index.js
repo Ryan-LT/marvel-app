@@ -45,13 +45,23 @@ class CharaterDashboard extends Component {
         }
     }
 
+    handleKeyPress = (e) => {
+        if(e.key==='ArrowRight'){
+            this.pageNextHandler()
+        }
+        else if(e.key==='ArrowLeft'){
+            this.pagePrevHandler()
+        }
+    }
+
     render() {
         const classes = this.props.classes;
         return (
             <>
-                <div className={classes.root}>
-                    {this.state.data && !this.state.loading ? this.state.data.map(item => {
+                <div onKeyUp={this.handleKeyPress} className={classes.root}>
+                    {this.state.data && !this.state.loading ? this.state.data.map((item, index) => {
                         return <CharaterInforBoard
+                            index={index + 1}
                             key={item.id}
                             name={item.name}
                             description={item.description}
