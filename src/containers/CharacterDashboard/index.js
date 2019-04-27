@@ -15,6 +15,9 @@ class CharaterDashboard extends Component {
     }
 
     componentDidMount() {
+        if (this.props.match.params.page !== undefined) {
+            this.setState({ page: this.props.match.params.page })
+        }
         getListCharacter(10, this.state.page).then(res => {
             this.setState({
                 data: res.data.data.results,
@@ -36,20 +39,26 @@ class CharaterDashboard extends Component {
     }
 
     pageNextHandler = () => {
-        this.setState({ page: this.state.page + 1 })
+        this.props.history.push(
+            `${+this.state.page + 1}`
+        )
+        this.setState({ page: +this.state.page + 1 })
     }
 
     pagePrevHandler = () => {
         if (this.state.page > 0) {
-            this.setState({ page: this.state.page - 1 })
+            this.props.history.push(
+                `${+this.state.page - 1}`
+            )
+            this.setState({ page: +this.state.page - 1 })
         }
     }
 
     handleKeyPress = (e) => {
-        if(e.key==='ArrowRight'){
+        if (e.key === 'ArrowRight') {
             this.pageNextHandler()
         }
-        else if(e.key==='ArrowLeft'){
+        else if (e.key === 'ArrowLeft') {
             this.pagePrevHandler()
         }
     }
@@ -58,6 +67,7 @@ class CharaterDashboard extends Component {
         const classes = this.props.classes;
         return (
             <>
+                <div><input className={classes.searchInput} placeholder='Search' /></div>
                 <div onKeyUp={this.handleKeyPress} className={classes.root}>
                     {this.state.data && !this.state.loading ? this.state.data.map((item, index) => {
                         return <CharaterInforBoard
@@ -71,6 +81,7 @@ class CharaterDashboard extends Component {
                     }) : <Loading />}
                 </div>
                 <Footer
+                    pageIndex={this.state.page}
                     nextPageClicked={this.pageNextHandler}
                     prevPageClicked={this.pagePrevHandler} />
             </>

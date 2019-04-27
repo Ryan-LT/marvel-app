@@ -32,6 +32,11 @@ export default {
             opacity: '0.95',
         }
     },
+    pageIndex: {
+        fontSize: '2em',
+        alignSelf: 'center',
+        color: '#42afa5'
+    },
     '@media (max-width: 1024px)': {
         root: {
             height: '30px',

@@ -13,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={CharacterDashboard} />
+          <Route path="/:page" exact component={CharacterDashboard} />
           <Route path="/detail/:id" component={CharacterDetail} />
           <Route path="/removeVowel" exact component={RemoveVowel} />
         </Switch>
