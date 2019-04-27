@@ -10,8 +10,8 @@ configure({ adapter: new Adapter() });
 
 describe('<CharaterDashboard/>', () => {
 
-    it('should render ten <Footer/>', () => {
+    it('should render one <Footer/>', () => {
         let wrapper = shallow(<CharaterDashboard />);
-        expect(wrapper().dive().find(Loading)).toHaveLength(1);
+        expect(wrapper.dive().find(Loading)).toHaveLength(1);
     });
 })
