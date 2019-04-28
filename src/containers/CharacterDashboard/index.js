@@ -88,7 +88,7 @@ class CharaterDashboard extends Component {
                     }) : <Loading />}
                 </div>
                 <Footer
-                    pageIndex={this.state.page}
+                    pageIndex={this.state.page + 1}
                     nextPageClicked={this.pageNextHandler}
                     prevPageClicked={this.pagePrevHandler} />
             </>
