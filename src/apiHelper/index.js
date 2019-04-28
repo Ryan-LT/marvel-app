@@ -5,7 +5,7 @@ const PRIV_KEY = "0577ee6a17331d9bf7b3ce2fee226a7664c681c7";
 const PUBLIC_KEY = "b1a2971390cc3f558035272fe497270f";
 const API_URL = 'https://gateway.marvel.com/v1/public/characters';
 
-export const getListCharacter = (rowsPerPage, pageNum, searchString) => {
+export const getListCharacter = (rowsPerPage, pageNum) => {
     const ts = new Date().getTime();
     const hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
 
@@ -15,8 +15,7 @@ export const getListCharacter = (rowsPerPage, pageNum, searchString) => {
             apikey: PUBLIC_KEY,
             hash: hash,
             limit: rowsPerPage,
-            offset: pageNum * rowsPerPage,
-            name: searchString
+            offset: pageNum * rowsPerPage
         }
     })
 };

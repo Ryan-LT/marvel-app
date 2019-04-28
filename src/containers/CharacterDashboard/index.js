@@ -11,25 +11,33 @@ class CharaterDashboard extends Component {
     state = {
         data: null,
         page: 0,
-        loading: true,
+        loading: true
     }
 
     componentDidMount() {
-        if (this.props.match.params.page !== undefined) {
-            this.setState({ page: this.props.match.params.page })
-        }
-        getListCharacter(10, this.state.page).then(res => {
-            this.setState({
-                data: res.data.data.results,
-                loading: false
+        const page = this.props.match.params.page;
+        if (page !== undefined) {
+            getListCharacter(10, page).then(res => {
+                this.setState({
+                    data: res.data.data.results,
+                    loading: false,
+                    page: page
+                })
             })
-        })
+        } else {
+            getListCharacter(10, 0).then(res => {
+                this.setState({
+                    data: res.data.data.results,
+                    loading: false
+                })
+            })
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.page !== this.state.page) {
+        if ((prevState.page !== this.state.page && this.state.page !== this.props.match.params.page)) {
             this.setState({ loading: true })
-            getListCharacter(10, this.state.page).then(res => {
+            getListCharacter(10, this.state.page, this.state.searchString).then(res => {
                 this.setState({
                     data: res.data.data.results,
                     loading: false
@@ -67,7 +75,6 @@ class CharaterDashboard extends Component {
         const classes = this.props.classes;
         return (
             <>
-                <div><input className={classes.searchInput} placeholder='Search' /></div>
                 <div onKeyUp={this.handleKeyPress} className={classes.root}>
                     {this.state.data && !this.state.loading ? this.state.data.map((item, index) => {
                         return <CharaterInforBoard

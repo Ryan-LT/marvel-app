@@ -40,7 +40,7 @@ export default {
     '@media (max-width: 1024px)': {
         root: {
             height: '30px',
-            width: '200px',
+            width: '250px',
         },
         btGroup: {
             '& button': {
@@ -49,6 +49,9 @@ export default {
                 padding: '5px 7px',
                 width: '80px',
             }
+        },
+        pageIndex: {
+            fontSize: '1em',
         },
     }
 }
