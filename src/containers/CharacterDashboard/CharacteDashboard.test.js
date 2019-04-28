@@ -10,8 +10,12 @@ configure({ adapter: new Adapter() });
 
 describe('<CharaterDashboard/>', () => {
 
+    const defaultProps = {
+        match: { params: { page: 0 } }
+    }
+
     it('should render one <Footer/>', () => {
-        let wrapper = shallow(<CharaterDashboard />);
+        let wrapper = shallow(<CharaterDashboard {...defaultProps} />);
         expect(wrapper.dive().find(Loading)).toHaveLength(1);
     });
 })
